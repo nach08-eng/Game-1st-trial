@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Guess The Number Game</title>
+    <style>
+body{
+    margin: 0;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: linear-gradient(135deg, #faccda, #c2e9fb);
+    font-family: Arial, Helvetica, sans-serif; ;
+}
+
+h1{
+    padding: 20px;
+    font-size: 3rem;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: #077ab3;
+}
+
+input{
+    font-weight:bolder;
+    color: rgb(250, 20, 20);
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
+
+button{
+    color:rgb(204, 42, 233);
+    font-weight:bolder;
+    display: flex;
+    font-family:'Times New Roman', Times, serif;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 20px;
+}
+
+p{
+    color: red;
+    font-weight:bolder;
+    justify-content: center;
+    display: flex;
+    font-family:'Times New Roman', Times, serif;
+    padding: 10px;
+    font-size: 2rem;
+}
+h2{
+    color: red;
+    font-weight::bolder;
+    justify-content: center;
+    display: flex;
+    font-family:'Times New Roman', Times, serif;
+    padding: 10px;
+    font-size: 2rem;
+}
+    </style>
+    </head>
+<body>
+    <h1>Guess The Number</h1>
+    <input id="guessnumber">
+    <button onclick="check()">Check</button>
+    <p id="result">You're Wrong/Right</p>
+    <h2 id="score">Score:10</h2>
+    <script>
+        //selecting input box,paragraph
+        var guessnumber = document.getElementById("guessnumber")
+        var result = document.getElementById("result")
+        var score=document.getElementById("score")
+        var randomNumber = Math.floor(Math.random()*10)+1
+        var totalscore = 10
+        function check()
+        {
+            var enterednumber = Number(guessnumber.value)
+            if(randomNumber==enterednumber)
+            {
+                console.log("Right")
+                result.textContent = "You're Right"
+                alert("You Won...")
+            }
+            else if (isNaN(enterednumber) || enterednumber < 1 || enterednumber > 10) {
+                result.textContent = "Please enter a number between 1 and 10."
+                return
+            }
+            else if (totalscore <= 0) {
+                result.textContent = "Game Over! The number was " + randomNumber
+                guessnumber.disabled = true
+            }
+            else{
+                totalscore=totalscore-1
+                score.textContent="Score:"+totalscore
+                result.textContent = "You're Wrong"
+            }
+        }
+    </script>
+</body>
+</html>
